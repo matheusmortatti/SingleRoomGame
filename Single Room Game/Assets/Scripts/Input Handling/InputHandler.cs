@@ -5,14 +5,8 @@ using UnityEngine.Events;
 
 public class InputHandler : MonoBehaviour {
 
-    [System.Serializable]
-    public class AxisUpdate : UnityEvent<float> { };
-
-    [System.Serializable]
-    public class ButtonUpdate : UnityEvent<bool> { };
-
     [SerializeField]
-    private AxisUpdate Walk_Vertical, Walk_Horizontal, Look_X, Look_Y;
+    private AxisUpdate Walk_Vertical, Walk_Horizontal, Look_X, Look_Y, ZoomIn;
 
     [SerializeField]
     private ButtonUpdate Interact;
@@ -28,9 +22,10 @@ public class InputHandler : MonoBehaviour {
         lastAxisValue["Look X"] = 0;
         lastAxisValue["Look Y"] = 0;
         lastAxisValue["Interact"] = 0;
+        lastAxisValue["ZoomIn"] = 0;
     }
 
-    void Update()
+    void LateUpdate()
     {
         HandleInput();
         UpdateKeyValues();
@@ -42,6 +37,7 @@ public class InputHandler : MonoBehaviour {
         Walk_Horizontal.Invoke(Input.GetAxisRaw("Horizontal"));
         Look_X.Invoke(Input.GetAxisRaw("Look X"));
         Look_Y.Invoke(Input.GetAxisRaw("Look Y"));
+        ZoomIn.Invoke(Input.GetAxisRaw("ZoomIn"));
 
         Interact.Invoke(GetKeyDown("Interact"));
     }
@@ -75,4 +71,60 @@ public class InputHandler : MonoBehaviour {
         Interact.RemoveAllListeners();
     }
 
+
+    public void SetListenerLookY(UnityAction<float> call)
+    {
+        Look_Y.AddListener(call);
+    }
+
+    public void RemoveAllListenersLookY()
+    {
+        Look_Y.RemoveAllListeners();
+    }
+
+    public void SetListenerLookX(UnityAction<float> call)
+    {
+        Look_X.AddListener(call);
+    }
+
+    public void RemoveAllListenersLookX()
+    {
+        Look_X.RemoveAllListeners();
+    }
+
+    public void SetListenerVertical(UnityAction<float> call)
+    {
+        Walk_Vertical.AddListener(call);
+    }
+
+    public void RemoveAllListenersVertical()
+    {
+        Walk_Vertical.RemoveAllListeners();
+    }
+
+    public void SetListenerHorizontal(UnityAction<float> call)
+    {
+        Walk_Horizontal.AddListener(call);
+    }
+
+    public void RemoveAllListenersHorizontal()
+    {
+        Walk_Horizontal.RemoveAllListeners();
+    }
+
+    public void RemoveAllListeners()
+    {
+        Walk_Horizontal.RemoveAllListeners();
+        Walk_Vertical.RemoveAllListeners();
+        Look_Y.RemoveAllListeners();
+        Look_X.RemoveAllListeners();
+        Interact.RemoveAllListeners();
+    }
+
 }
+
+[System.Serializable]
+public class AxisUpdate : UnityEvent<float> { };
+
+[System.Serializable]
+public class ButtonUpdate : UnityEvent<bool> { };
