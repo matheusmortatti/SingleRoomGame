@@ -19,7 +19,7 @@ public class AttachToItself : MonoBehaviour {
 
     public bool Attach(GameObject obj)
     {
-        if (attachedObject != null) return false;
+        if (attachedObject != null || obj == null) return false;
 
         attachedObject = obj;
 

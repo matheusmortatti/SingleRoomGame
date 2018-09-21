@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 190545001}
   - component: {fileID: 190545000}
   - component: {fileID: 190544999}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 356001749}
   - component: {fileID: 356001751}
   - component: {fileID: 356001750}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Interact Text Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 836407879}
   - component: {fileID: 836407878}
   - component: {fileID: 836407877}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 904831608}
   - component: {fileID: 904831607}
   - component: {fileID: 904831606}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: ObjectAnchor
   m_TagString: PlayerHand
   m_Icon: {fileID: 0}
@@ -824,7 +824,7 @@ GameObject:
   - component: {fileID: 1157960615}
   - component: {fileID: 1157960617}
   - component: {fileID: 1157960616}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: InteractText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 1170336500}
   - component: {fileID: 1170336499}
   - component: {fileID: 1170336498}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1027,6 +1027,10 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: AxisUpdate, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    FocusEvent:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: AxisUpdate, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     InteractionEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -1108,6 +1112,21 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: AxisUpdate, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    FocusEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1170336500}
+          m_MethodName: Focus
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: AxisUpdate, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     InteractionEvent:
       m_PersistentCalls:
         m_Calls:
@@ -1135,7 +1154,7 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  - state: 0
+  - state: 2
     VerticalEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -1146,17 +1165,54 @@ MonoBehaviour:
       m_TypeName: AxisUpdate, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     LookXEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1414370978}
+          m_MethodName: ApplyRotationY
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: AxisUpdate, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     LookYEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1414370978}
+          m_MethodName: ApplyRotationX
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: AxisUpdate, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     ZoomInEvent:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1980539792}
           m_MethodName: ProcessZoomIn
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: AxisUpdate, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    FocusEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1170336500}
+          m_MethodName: Focus
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1199,7 +1255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1225711798}
   - component: {fileID: 1225711799}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: InputHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1305,6 +1361,21 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: AxisUpdate, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  Focus:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1170336500}
+        m_MethodName: ProcessFocusAxis
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: AxisUpdate, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   Interact:
     m_PersistentCalls:
       m_Calls:
@@ -1326,6 +1397,117 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 917818372}
   m_Script: {fileID: 11500000, guid: 0fcbbc192a56b56408568d424e268b4f, type: 3}
+--- !u!1 &1414370972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1414370973}
+  - component: {fileID: 1414370976}
+  - component: {fileID: 1414370975}
+  - component: {fileID: 1414370974}
+  - component: {fileID: 1414370977}
+  - component: {fileID: 1414370978}
+  m_Layer: 10
+  m_Name: FocusAnchor
+  m_TagString: FocusPosition
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1414370973
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1414370972}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.974}
+  m_LocalScale: {x: 0.092113, y: 0.092113, z: 0.092113}
+  m_Children: []
+  m_Father: {fileID: 1980539789}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1414370974
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1414370972}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1414370975
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1414370972}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1414370976
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1414370972}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1414370977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1414370972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6abe4cb80da1874cb14a6d03686bc4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachedObject: {fileID: 0}
+--- !u!114 &1414370978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1414370972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3055c8c9240154749978e2b76bd7889d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSensitivity: 3
 --- !u!1 &1428452902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,7 +1624,7 @@ GameObject:
   - component: {fileID: 1774090644}
   - component: {fileID: 1774090646}
   - component: {fileID: 1774090645}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1514,7 +1696,7 @@ GameObject:
   - component: {fileID: 1980539790}
   - component: {fileID: 1980539791}
   - component: {fileID: 1980539792}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1577,7 +1759,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1414370973}
   m_Father: {fileID: 1170336501}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

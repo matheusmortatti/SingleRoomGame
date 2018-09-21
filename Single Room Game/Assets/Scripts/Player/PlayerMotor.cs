@@ -28,6 +28,7 @@ public class PlayerMotor : MonoBehaviour {
     void PerformMovement()
     {
         rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+        velocity = Vector3.zero;
     }
 
     void PerformRotation()
@@ -51,6 +52,9 @@ public class PlayerMotor : MonoBehaviour {
         }
 
         camera.transform.localEulerAngles = cameraAngle;
+
+        rotation = Vector3.zero;
+        cameraRotation = Vector3.zero;
     }
 
     public void ApplyVelocity(Vector3 _velocity)

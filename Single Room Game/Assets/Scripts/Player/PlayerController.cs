@@ -32,13 +32,16 @@ public class PlayerController : MonoBehaviour {
     private AttachToItself playerHand;
     private InputHandler inputHandler;
 
+    private AttachToItself focusAnchor;
+
     void Start()
     {
         motor = GetComponent<PlayerMotor>();
 
         interactionStateHandler = FindObjectOfType<InteractionStateHandler>();
 
-        playerHand = GetComponentInChildren<AttachToItself>();
+        playerHand = GameObject.FindGameObjectWithTag("PlayerHand").GetComponent<AttachToItself>();
+        focusAnchor = GameObject.FindGameObjectWithTag("FocusPosition").GetComponent<AttachToItself>();
 
         inputHandler = GetComponentInChildren<InputHandler>();
 
@@ -66,6 +69,37 @@ public class PlayerController : MonoBehaviour {
 
         motor.ApplyVelocity(_velocity);
         motor.ApplyRotation(_rotation);
+
+        _xMov = 0;
+        _zMov = 0;
+        _xRot = 0;
+        _yRot = 0;
+    }
+
+    private float lastFocusButtonVal = 0;
+    private GameObject handObject;
+    public void Focus(float buttonVal)
+    {
+        Debug.Log(buttonVal);
+        if (buttonVal > 0.1)
+        {
+            if (lastFocusButtonVal <= 0.1)
+            {
+                interactionStateHandler.ChangeState(InteractionStateNames.FOCUSING);
+
+                handObject = playerHand.accessAttachedObject();
+                playerHand.Detach();
+                focusAnchor.Attach(handObject);
+            }
+        }
+        else if(lastFocusButtonVal > 0.1)
+        {
+            interactionStateHandler.ChangeState(InteractionStateNames.HOLDING);
+            focusAnchor.Detach();
+            playerHand.Attach(handObject);
+        }
+
+        lastFocusButtonVal = buttonVal;
     }
 
     public void InteractionMessage(string message)
@@ -88,6 +122,19 @@ public class PlayerController : MonoBehaviour {
         {
             currentInputEvent.AltZoomInEvent.axisEvent.Invoke(val);
             RemoveAllAltListenersZoomIn();
+        }
+    }
+
+    public void ProcessFocusAxis(float val)
+    {
+        if (currentInputEvent.AltFocusEvent.eventCounter == 0)
+        {
+            currentInputEvent.FocusEvent.Invoke(val);
+        }
+        else
+        {
+            currentInputEvent.AltFocusEvent.axisEvent.Invoke(val);
+            RemoveAllAltListenersFocus();
         }
     }
 
@@ -250,6 +297,16 @@ public class PlayerController : MonoBehaviour {
         currentInputEvent.AltZoomInEvent.axisEvent.RemoveAllListeners();
     }
 
+    public void SetAltListenerFocus(UnityAction<float> call)
+    {
+        currentInputEvent.AltFocusEvent.axisEvent.AddListener(call);
+    }
+
+    public void RemoveAllAltListenersFocus()
+    {
+        currentInputEvent.AltFocusEvent.axisEvent.RemoveAllListeners();
+    }
+
     private InputStateEvents FindCurrentEvent()
     {
         foreach(InputStateEvents e in baseInputStateEvents)
@@ -274,6 +331,7 @@ public class InputStateEvents
         LookXEvent = new AxisUpdate();
         LookYEvent = new AxisUpdate();
         ZoomInEvent = new AxisUpdate();
+        FocusEvent = new AxisUpdate();
         InteractionEvent = new UnityEvent();
 
         AltHorizontalEvent = new AxisEventParams();
@@ -281,16 +339,17 @@ public class InputStateEvents
         AltLookXEvent = new AxisEventParams();
         AltLookYEvent = new AxisEventParams();
         AltZoomInEvent = new AxisEventParams();
+        AltFocusEvent= new AxisEventParams();
         AltInteractionEvent = new UnityEventParams();
     }
 
     public InteractionStateNames state;
 
-    public AxisUpdate VerticalEvent, HorizontalEvent, LookXEvent, LookYEvent, ZoomInEvent;
+    public AxisUpdate VerticalEvent, HorizontalEvent, LookXEvent, LookYEvent, ZoomInEvent, FocusEvent;
     public UnityEvent InteractionEvent;
 
     [HideInInspector]
-    public AxisEventParams AltVerticalEvent, AltHorizontalEvent, AltLookXEvent, AltLookYEvent, AltZoomInEvent;
+    public AxisEventParams AltVerticalEvent, AltHorizontalEvent, AltLookXEvent, AltLookYEvent, AltZoomInEvent, AltFocusEvent;
     [HideInInspector]
     public UnityEventParams AltInteractionEvent;
 
@@ -317,48 +376,4 @@ public class InputStateEvents
             eventCounter = 0;
         }
     }
-
-    //public object Clone()
-    //{
-    //    InputStateEvents newState = new InputStateEvents();
-
-    //    newState.state = this.state;
-
-    //    for(int i = 0; i < VerticalEvent.GetPersistentEventCount(); i++)
-    //    {
-    //        MethodInfo info = UnityEventBase.GetValidMethodInfo(this.VerticalEvent.GetPersistentTarget(i), this.VerticalEvent.GetPersistentMethodName(i), new Type[] { typeof(float) });
-    //        UnityAction<float> execute = (float f) => info.Invoke(this.VerticalEvent.GetPersistentTarget(i), new object[] { f });
-    //        newState.VerticalEvent.AddListener(execute);
-    //    }
-
-    //    for (int i = 0; i < HorizontalEvent.GetPersistentEventCount(); i++)
-    //    {
-    //        MethodInfo info = UnityEventBase.GetValidMethodInfo(this.HorizontalEvent.GetPersistentTarget(i), this.HorizontalEvent.GetPersistentMethodName(i), new Type[] { typeof(float) });
-    //        UnityAction<float> execute = (float f) => info.Invoke(this.HorizontalEvent.GetPersistentTarget(i), new object[] { f });
-    //        newState.HorizontalEvent.AddListener(execute);
-    //    }
-
-    //    for (int i = 0; i < LookXEvent.GetPersistentEventCount(); i++)
-    //    {
-    //        MethodInfo info = UnityEventBase.GetValidMethodInfo(this.LookXEvent.GetPersistentTarget(i), this.LookXEvent.GetPersistentMethodName(i), new Type[] { typeof(float) });
-    //        UnityAction<float> execute = (float f) => info.Invoke(this.LookXEvent.GetPersistentTarget(i), new object[] { f });
-    //        newState.LookXEvent.AddListener(execute);
-    //    }
-
-    //    for (int i = 0; i < LookYEvent.GetPersistentEventCount(); i++)
-    //    {
-    //        MethodInfo info = UnityEventBase.GetValidMethodInfo(this.LookYEvent.GetPersistentTarget(i), this.LookYEvent.GetPersistentMethodName(i), new Type[] { typeof(float) });
-    //        UnityAction<float> execute = (float f) => info.Invoke(this.LookYEvent.GetPersistentTarget(i), new object[] { f });
-    //        newState.LookYEvent.AddListener(execute);
-    //    }
-
-    //    for (int i = 0; i < InteractionEvent.GetPersistentEventCount(); i++)
-    //    {
-    //        MethodInfo info = UnityEventBase.GetValidMethodInfo(this.InteractionEvent.GetPersistentTarget(i), this.InteractionEvent.GetPersistentMethodName(i), new Type[] {  });
-    //        UnityAction execute = () => info.Invoke(this.InteractionEvent.GetPersistentTarget(i), new object[] {  });
-    //        newState.InteractionEvent.AddListener(execute);
-    //    }
-
-    //    return newState;
-    //}
 }

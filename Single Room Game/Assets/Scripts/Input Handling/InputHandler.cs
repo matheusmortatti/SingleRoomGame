@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class InputHandler : MonoBehaviour {
 
     [SerializeField]
-    private AxisUpdate Walk_Vertical, Walk_Horizontal, Look_X, Look_Y, ZoomIn;
+    private AxisUpdate Walk_Vertical, Walk_Horizontal, Look_X, Look_Y, ZoomIn, Focus;
 
     [SerializeField]
     private ButtonUpdate Interact;
@@ -23,6 +23,7 @@ public class InputHandler : MonoBehaviour {
         lastAxisValue["Look Y"] = 0;
         lastAxisValue["Interact"] = 0;
         lastAxisValue["ZoomIn"] = 0;
+        lastAxisValue["Focus"] = 0;
     }
 
     void LateUpdate()
@@ -38,6 +39,7 @@ public class InputHandler : MonoBehaviour {
         Look_X.Invoke(Input.GetAxisRaw("Look X"));
         Look_Y.Invoke(Input.GetAxisRaw("Look Y"));
         ZoomIn.Invoke(Input.GetAxisRaw("ZoomIn"));
+        Focus.Invoke(Input.GetAxisRaw("Focus"));
 
         Interact.Invoke(GetKeyDown("Interact"));
     }
@@ -60,6 +62,7 @@ public class InputHandler : MonoBehaviour {
 
         return false;
     }
+
 
     public void SetListenerInteract(UnityAction<bool> call)
     {
